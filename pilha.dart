@@ -50,7 +50,6 @@ pop(expressao){
   for (var i = 0; i < expressao.length; i++){
     expressao[i] = pexpressao[i];
   }
-  return expressao;
 }
 push(expressao, number){
   var pexpressao = expressao;
@@ -59,5 +58,4 @@ push(expressao, number){
   for (var i = 0; i < expressao.length - 1; i++){
     expressao[i] = pexpressao[i];
   }
-  return expressao;
 }
