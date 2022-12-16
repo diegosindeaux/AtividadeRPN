@@ -1,18 +1,18 @@
 #include<stdio.h>
 #include<ctype.h>
 
-char pilha[100];
-int topo = -1;
+char stack[100];
+int top = -1;
 
 void push (char a){
-    pilha[++topo] = a;
+    stack[++top] = a;
 }
 
 char pop(){
-    if(topo == -1)
+    if(top == -1)
         return -1;
     else
-        return pilha[topo--];
+        return stack[top--];
 }
 
 int priority(char x){
@@ -26,12 +26,12 @@ int priority(char x){
 }
 
 int main(){
-    char expressão[100];
+    char express[100];
     char *e, x;
-    printf("digite a expressão: ");
-    scanf("%s", expressão);
+    printf("expressão: ");
+    scanf("%s", express);
     printf("\n");
-    e = expressão;
+    e = express;
 
     while(*e != '\0'){
         if(isalnum(*e))
@@ -45,14 +45,14 @@ int main(){
         }
         else
         {
-            while(priority(pilha[topo]) >= priority(*e))
+            while(priority(stack[top]) >= priority(*e))
                 printf("%c ",pop());
             push(*e);
         }
         e++;
     }
 
-    while(topo != -1){
+    while(top != -1){
         printf("%c ",pop());
     }
 
