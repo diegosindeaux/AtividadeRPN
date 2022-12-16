@@ -5,41 +5,40 @@
 
 #define SIZE 200
 
-typedef struct Pilha {
-    int topo;
-    float dados[SIZE];
-}Pilha;
+typedef struct Stack {
+    int top;
+    float data[SIZE];
+}Stack;
 
-void push(Pilha *pilha, char *token);
-float pop(Pilha *pilha);
-void push(Pilha *pilha, char *token){
-    pilha->topo++;
-    pilha->dados[pilha->topo] = atof(token);
+void push(Stack *stack, char *token);
+float pop(Stack *stack);
+void push(Stack *stack, char *token){
+    stack->top++;
+    stack->data[stack->top] = atof(token);
 }
 
-float pop(Pilha *pilha){
-    return pilha->dados[pilha->topo--];
+float pop(Stack *stack){
+    return stack->data[stack->top--];
 }
 
 int main (int argc, char *argv[]){
-    // char expressao[SIZE] = "1337 202 + 300 501 * +";
-    char expressao[SIZE];
-    Pilha pilha;
-    pilha.topo = -1;
+    char express[SIZE];
+    Stack stack;
+    stack.top = -1;
     char num[10];
 
-    printf("digite a expressão: \n");
-    scanf("%[^\n]s", expressao);
+    printf("Expressão: \n");
+    scanf("%[^\n]s", express);
 
-    char *token = strtok(expressao, " ");
+    char *token = strtok(express, " ");
 
     while (token != NULL){
         if(isdigit(*token)){
-            push(&pilha, token);
+            push(&stack, token);
         }
         else {
-            float num1 = pop(&pilha);
-            float num2 = pop(&pilha);
+            float num1 = pop(&stack);
+            float num2 = pop(&stack);
             switch (*token) {
                 case '+':
                 {
@@ -62,9 +61,9 @@ int main (int argc, char *argv[]){
                     break;
                 }
             }
-            push(&pilha, num);
+            push(&stack, num);
         }
         token = strtok(NULL, " ");
     }
-    printf("resultado: %.2f\n", pop(&pilha));
+    printf("resultado: %.2f\n", pop(&stack));
 }
