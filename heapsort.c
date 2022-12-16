@@ -8,9 +8,7 @@ void swap(int* a, int* b) {
 
 void heapify (int arr[], int n, int i){
     int largest = i;
-
     int left = 2 * i + 1;
-
     int right = 2 * i + 2;
 
     if (left < n && arr[left] > arr[largest]) {
@@ -41,16 +39,14 @@ void heapSort(int arr[], int n){
     }
 }
 
-void printArray(int arr[], int n)
-{
+void printArray(int arr[], int n){
     for (int i = 0; i < n; i++)
         printf("%d ", arr[i]);
     printf("\n");
 }
 
-int main()
-{
-    int arr[] = { 8, 3, 2, 6, 12, 11, 5};
+int main(){
+    int arr[] = { 12, 3, 10, 6, 4, 8, 9};
     int n = sizeof(arr) / sizeof(arr[0]);
 
     heapSort(arr, n);
